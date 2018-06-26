@@ -10,7 +10,9 @@
 import Foundation
 import CoreData
 
-
 public class Item: NSManagedObject {
-
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.created = NSDate()
+    }
 }
