@@ -14,8 +14,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
     
     var controller: NSFetchedResultsController<Item>!
     
-    var stores = [Store]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

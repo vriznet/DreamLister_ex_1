@@ -272,6 +272,14 @@
                     <navigationItem key="navigationItem" title="Add/Edit" id="Xaq-Sq-Rnz">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="YKK-EN-XH0"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="detailsLbl" destination="nxg-bq-e0p" id="Okr-xl-UUJ"/>
+                        <outlet property="priceLbl" destination="Rqt-MR-b1r" id="hxU-9M-s3r"/>
+                        <outlet property="storePicker" destination="Gmn-lx-2BY" id="rYe-6o-GTI"/>
+                        <outlet property="thumbImg" destination="lOU-Ze-2GA" id="RAd-F5-nfs"/>
+                        <outlet property="titleLbl" destination="nM1-jt-w6e" id="YQD-hI-f6C"/>
+                        <outlet property="typePicker" destination="ksi-qc-6kl" id="lC1-FR-YS1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gse-he-8Il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
