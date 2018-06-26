@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
-    
     @IBOutlet weak var tableView: UITableView!
     
     var controller: NSFetchedResultsController<Item>!
