@@ -132,12 +132,13 @@
                     <navigationItem key="navigationItem" title="DreamLister" id="xxT-i0-79N">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kcR-dx-ycP">
                             <connections>
-                                <segue destination="fJ9-4s-aXM" kind="show" id="7mJ-Ao-GlG"/>
+                                <segue destination="fJ9-4s-aXM" kind="show" identifier="addItem" id="7mJ-Ao-GlG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="hoD-JJ-HUy" id="aMF-HX-Sx8"/>
+                        <segue destination="fJ9-4s-aXM" kind="show" identifier="editItem" id="gul-oB-r7s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -308,4 +309,7 @@
     <resources>
         <image name="imagePick" width="300" height="300"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gul-oB-r7s"/>
+    </inferredMetricsTieBreakers>
 </document>
