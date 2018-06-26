@@ -21,6 +21,8 @@
 		9BAED94820E1D31000BE022C /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAED94020E1D31000BE022C /* Image+CoreDataProperties.swift */; };
 		9BAED94920E1D31000BE022C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAED94120E1D31000BE022C /* Item+CoreDataClass.swift */; };
 		9BAED94A20E1D31000BE022C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAED94220E1D31000BE022C /* Item+CoreDataProperties.swift */; };
+		9BAED95020E1F78600BE022C /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAED94F20E1F78600BE022C /* ItemCell.swift */; };
+		9BAED95220E2028300BE022C /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAED95120E2028300BE022C /* MaterialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		9BAED94020E1D31000BE022C /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9BAED94120E1D31000BE022C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9BAED94220E1D31000BE022C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9BAED94F20E1F78600BE022C /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		9BAED95120E2028300BE022C /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				9BAED94B20E1D31800BE022C /* Model */,
+				9BAED94D20E1F72000BE022C /* View */,
+				9BAED94E20E1F72700BE022C /* Controller */,
 				9B646F8320E1C9DF00E36977 /* DreamLister_ex_1 */,
 				9B646F8220E1C9DF00E36977 /* Products */,
 			);
@@ -74,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				9B646F8420E1C9E000E36977 /* AppDelegate.swift */,
-				9B646F8620E1C9E000E36977 /* MainVC.swift */,
 				9B646F8820E1C9E000E36977 /* Main.storyboard */,
 				9B646F8E20E1C9E200E36977 /* Assets.xcassets */,
 				9B646F9020E1C9E200E36977 /* LaunchScreen.storyboard */,
@@ -105,6 +110,23 @@
 				9BAED94220E1D31000BE022C /* Item+CoreDataProperties.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		9BAED94D20E1F72000BE022C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9BAED94F20E1F78600BE022C /* ItemCell.swift */,
+				9BAED95120E2028300BE022C /* MaterialView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9BAED94E20E1F72700BE022C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9B646F8620E1C9E000E36977 /* MainVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,11 +203,13 @@
 				9BAED94920E1D31000BE022C /* Item+CoreDataClass.swift in Sources */,
 				9BAED94820E1D31000BE022C /* Image+CoreDataProperties.swift in Sources */,
 				9BAED94320E1D31000BE022C /* ItemType+CoreDataClass.swift in Sources */,
+				9BAED95220E2028300BE022C /* MaterialView.swift in Sources */,
 				9BAED94520E1D31000BE022C /* Store+CoreDataClass.swift in Sources */,
 				9BAED94420E1D31000BE022C /* ItemType+CoreDataProperties.swift in Sources */,
 				9BAED94720E1D31000BE022C /* Image+CoreDataClass.swift in Sources */,
 				9B646F8720E1C9E000E36977 /* MainVC.swift in Sources */,
 				9BAED94620E1D31000BE022C /* Store+CoreDataProperties.swift in Sources */,
+				9BAED95020E1F78600BE022C /* ItemCell.swift in Sources */,
 				9B646F8520E1C9E000E36977 /* AppDelegate.swift in Sources */,
 				9BAED94A20E1D31000BE022C /* Item+CoreDataProperties.swift in Sources */,
 				9B646F8D20E1C9E000E36977 /* DreamLister_ex_1.xcdatamodeld in Sources */,
