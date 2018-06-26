@@ -31,7 +31,7 @@
                                 <rect key="frame" x="15" y="108" width="290" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="cPM-hO-jXe" customClass="ItemCell" customModule="DreamLister_ex_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="cPM-hO-jXe" customClass="ItemCell" customModule="DreamLister_ex_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="290" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cPM-hO-jXe" id="TGG-AS-3mt">
@@ -106,6 +106,7 @@
                                                 <constraint firstItem="Byk-GI-Ch6" firstAttribute="centerY" secondItem="TGG-AS-3mt" secondAttribute="centerY" id="hAv-Ka-adH"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="detailsLbl" destination="fK2-Zm-YEE" id="Oxt-uI-0DF"/>
                                             <outlet property="priceLbl" destination="WCJ-Z3-zTf" id="T4F-7R-7RL"/>

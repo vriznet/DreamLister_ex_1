@@ -23,18 +23,26 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.delegate = self
         tableView.dataSource = self
         
-        attemptFetch()
         generateTestData()
+        attemptFetch()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if let sections = controller.sections{
+            return sections.count
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let sections = controller.sections{
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        configureCell(cell: cell, indexPath: indexPath)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,7 +72,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             break
         case.update:
             if let indexPath = indexPath{
-                // update
+                let cell = tableView.cellForRow(at: indexPath) as! ItemCell
+                configureCell(cell: cell, indexPath: indexPath)
             }
             break
         case.move:
@@ -76,6 +85,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             }
             break
         }
+    }
+    
+    func configureCell(cell: ItemCell, indexPath: IndexPath){
+        let item = controller.object(at: indexPath)
+        cell.configureCell(item: item)
     }
     
     func attemptFetch(){
