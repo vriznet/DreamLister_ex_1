@@ -88,4 +88,21 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             print(error)
         }
     }
+    
+    @IBAction func savePressed(_ sender: UIButton) {
+        let item = Item(context: context)
+        if let title = titleLbl.text{
+            item.title = title
+        }
+        if let price = priceLbl.text{
+            item.price = (price as NSString).doubleValue
+        }
+        if let details = detailsLbl.text{
+            item.details = details
+        }
+        item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
+        item.toItemType = types[typePicker.selectedRow(inComponent: 0)]
+        ad.saveContext()
+        navigationController?.popViewController(animated: true)
+    }
 }
