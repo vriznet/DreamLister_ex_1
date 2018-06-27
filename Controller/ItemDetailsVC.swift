@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate,UIImagePickerControllerDelegate {
+class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var thumbImg: UIImageView!
     @IBOutlet weak var titleLbl: CustomTextField!
     @IBOutlet weak var priceLbl: CustomTextField!
@@ -23,6 +23,10 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     var types = [ItemType]()
     var imagePicker: UIImagePickerController!
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let topItem = self.navigationController?.navigationBar.topItem{
@@ -35,32 +39,42 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         storePicker.dataSource = self
         typePicker.dataSource = self
         imagePicker.delegate = self
+        titleLbl.delegate = self
+        priceLbl.delegate = self
+        detailsLbl.delegate = self
+        
+//        let store1 = Store(context: context)
+//        store1.name = "Amazon"
+//        let store2 = Store(context: context)
+//        store2.name = "K Mart"
+//        let store3 = Store(context: context)
+//        store3.name = "Target"
+//        let store4 = Store(context: context)
+//        store4.name = "Fry"
+//
+//        let type1 = ItemType(context: context)
+//        type1.type = "Computer"
+//        let type2 = ItemType(context: context)
+//        type2.type = "Car"
+//        let type3 = ItemType(context: context)
+//        type3.type = "Audio"
+//        let type4 = ItemType(context: context)
+//        type4.type = "Camera"
+//
+//        ad.saveContext()
         
         getStores()
         getTypes()
         if itemToEdit != nil{
             loadItemData()
         }
-        
-        //        let store1 = Store(context: context)
-        //        store1.name = "Amazon"
-        //        let store2 = Store(context: context)
-        //        store2.name = "K Mart"
-        //        let store3 = Store(context: context)
-        //        store3.name = "Target"
-        //        let store4 = Store(context: context)
-        //        store4.name = "Fry"
-        //
-        //        let type1 = ItemType(context: context)
-        //        type1.type = "Computer"
-        //        let type2 = ItemType(context: context)
-        //        type2.type = "Car"
-        //        let type3 = ItemType(context: context)
-        //        type3.type = "Audio"
-        //        let type4 = ItemType(context: context)
-        //        type4.type = "Camera"
-        //
-        //        ad.saveContext()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleLbl.resignFirstResponder()
+        priceLbl.resignFirstResponder()
+        detailsLbl.resignFirstResponder()
+        return true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
