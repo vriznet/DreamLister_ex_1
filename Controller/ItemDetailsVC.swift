@@ -18,6 +18,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     @IBOutlet weak var storePicker: UIPickerView!
     @IBOutlet weak var typePicker: UIPickerView!
     
+    var itemToEdit: Item!
     var stores = [Store]()
     var types = [ItemType]()
     
@@ -32,20 +33,31 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         storePicker.dataSource = self
         typePicker.dataSource = self
         
+//        let store1 = Store(context: context)
+//        store1.name = "Amazon"
+//        let store2 = Store(context: context)
+//        store2.name = "K Mart"
 //        let store3 = Store(context: context)
 //        store3.name = "Target"
 //        let store4 = Store(context: context)
 //        store4.name = "Fry"
 //
+//        let type1 = ItemType(context: context)
+//        type1.type = "Computer"
+//        let type2 = ItemType(context: context)
+//        type2.type = "Car"
 //        let type3 = ItemType(context: context)
 //        type3.type = "Audio"
 //        let type4 = ItemType(context: context)
 //        type4.type = "Camera"
 //
 //        ad.saveContext()
-        
         getStores()
         getTypes()
+        if itemToEdit != nil{
+            loadItemData()
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -88,9 +100,45 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             print(error)
         }
     }
+    func loadItemData(){
+        if let item = itemToEdit{
+            titleLbl.text = item.title
+            priceLbl.text = "\(item.price)"
+            detailsLbl.text = item.details
+            
+            if let store = item.toStore{
+                var index = 0
+                repeat{
+                    let s = stores[index]
+                    if s.name == store.name{
+                        storePicker.selectRow(index, inComponent: 0, animated: true)
+                        break
+                    }
+                    index += 1
+                }while(index < stores.count)
+            }
+            
+            if let type = item.toItemType{
+                var index = 0
+                repeat{
+                    let t = types[index]
+                    if t.type == type.type{
+                        typePicker.selectRow(index, inComponent: 0, animated: true)
+                        break
+                    }
+                    index += 1
+                }while(index < types.count)
+            }
+        }
+    }
     
-    @IBAction func savePressed(_ sender: UIButton) {
-        let item = Item(context: context)
+    @IBAction func savePressed(_ sender: UIButton){
+        var item: Item!
+        if itemToEdit != nil{
+            item = itemToEdit
+        }else{
+            item = Item(context: context)
+        }
         if let title = titleLbl.text{
             item.title = title
         }

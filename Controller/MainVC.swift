@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
     
     var controller: NSFetchedResultsController<Item>!
@@ -20,7 +20,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.delegate = self
         tableView.dataSource = self
         
-        generateTestData()
         attemptFetch()
     }
     
@@ -43,7 +42,19 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Edit Item Details
+        if let objs = controller.fetchedObjects , objs.count > 0{
+            let item = objs[indexPath.row]
+            performSegue(withIdentifier: "editItem", sender: item)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editItem"{
+            if let destination = segue.destination as? ItemDetailsVC{
+                if let item = sender as? Item{
+                    destination.itemToEdit = item
+                }
+            }
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
@@ -55,7 +66,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
         switch(type){
         case.insert:
             if let indexPath = newIndexPath{
@@ -102,15 +113,5 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             let error = error as NSError
             print(error)
         }
-    }
-    func generateTestData(){
-        let item1 = Item(context: context)
-        item1.title = "Macbook Pro1"
-        item1.price = 1100.0
-        item1.details = "Hello My World!1"
-        let item2 = Item(context: context)
-        item2.title = "Macbook Pro2"
-        item2.price = 1200.0
-        item2.details = "Hello My World!2"
     }
 }
