@@ -27,15 +27,16 @@
                                 </segments>
                                 <color key="tintColor" red="0.48871748100000001" green="0.48871748100000001" blue="0.48871748100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-JJ-HUy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-JJ-HUy">
                                 <rect key="frame" x="15" y="108" width="290" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="cPM-hO-jXe" customClass="ItemCell" customModule="DreamLister_ex_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="290" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cPM-hO-jXe" id="TGG-AS-3mt">
-                                            <rect key="frame" x="0.0" y="0.0" width="290" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byk-GI-Ch6">
@@ -238,6 +239,9 @@
                                     <constraint firstAttribute="height" constant="68" id="MqL-Ag-Olu"/>
                                     <constraint firstAttribute="width" constant="68" id="Zso-zx-WBC"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="imgBtnPressed:" destination="fJ9-4s-aXM" eventType="touchUpInside" id="bla-lT-BfC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -274,7 +278,11 @@
                         <viewLayoutGuide key="safeArea" id="k6N-0S-ypt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add/Edit" id="Xaq-Sq-Rnz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="YKK-EN-XH0"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="YKK-EN-XH0">
+                            <connections>
+                                <action selector="deletePressed:" destination="fJ9-4s-aXM" id="plS-5X-lMx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailsLbl" destination="nxg-bq-e0p" id="Okr-xl-UUJ"/>
