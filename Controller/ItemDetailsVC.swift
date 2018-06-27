@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate {
+class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate,UIImagePickerControllerDelegate {
     @IBOutlet weak var thumbImg: UIImageView!
     @IBOutlet weak var titleLbl: CustomTextField!
     @IBOutlet weak var priceLbl: CustomTextField!
@@ -21,43 +21,46 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     var itemToEdit: Item!
     var stores = [Store]()
     var types = [ItemType]()
+    var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let topItem = self.navigationController?.navigationBar.topItem{
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
+        imagePicker = UIImagePickerController()
         
         storePicker.delegate = self
         typePicker.delegate = self
         storePicker.dataSource = self
         typePicker.dataSource = self
+        imagePicker.delegate = self
         
-//        let store1 = Store(context: context)
-//        store1.name = "Amazon"
-//        let store2 = Store(context: context)
-//        store2.name = "K Mart"
-//        let store3 = Store(context: context)
-//        store3.name = "Target"
-//        let store4 = Store(context: context)
-//        store4.name = "Fry"
-//
-//        let type1 = ItemType(context: context)
-//        type1.type = "Computer"
-//        let type2 = ItemType(context: context)
-//        type2.type = "Car"
-//        let type3 = ItemType(context: context)
-//        type3.type = "Audio"
-//        let type4 = ItemType(context: context)
-//        type4.type = "Camera"
-//
-//        ad.saveContext()
         getStores()
         getTypes()
         if itemToEdit != nil{
             loadItemData()
         }
         
+        //        let store1 = Store(context: context)
+        //        store1.name = "Amazon"
+        //        let store2 = Store(context: context)
+        //        store2.name = "K Mart"
+        //        let store3 = Store(context: context)
+        //        store3.name = "Target"
+        //        let store4 = Store(context: context)
+        //        store4.name = "Fry"
+        //
+        //        let type1 = ItemType(context: context)
+        //        type1.type = "Computer"
+        //        let type2 = ItemType(context: context)
+        //        type2.type = "Car"
+        //        let type3 = ItemType(context: context)
+        //        type3.type = "Audio"
+        //        let type4 = ItemType(context: context)
+        //        type4.type = "Camera"
+        //
+        //        ad.saveContext()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -78,6 +81,12 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             return types[row].type
         }
         return ""
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let img = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            thumbImg.image = img
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     func getStores(){
@@ -102,6 +111,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     }
     func loadItemData(){
         if let item = itemToEdit{
+            thumbImg.image = item.toImage?.image as? UIImage
             titleLbl.text = item.title
             priceLbl.text = "\(item.price)"
             detailsLbl.text = item.details
@@ -134,11 +144,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     @IBAction func savePressed(_ sender: UIButton){
         var item: Item!
+        let picture = Image(context: context)
+        picture.image = thumbImg.image
         if itemToEdit != nil{
             item = itemToEdit
         }else{
             item = Item(context: context)
         }
+        item.toImage = picture
         if let title = titleLbl.text{
             item.title = title
         }
@@ -160,4 +173,8 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         }
         navigationController?.popViewController(animated: true)
     }
+    @IBAction func imgBtnPressed(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
 }

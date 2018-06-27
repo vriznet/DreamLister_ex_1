@@ -18,6 +18,5 @@ extension Image {
     }
 
     @NSManaged public var image: NSObject?
-    @NSManaged public var toStore: Store?
-
+    @NSManaged public var toItem: Item?
 }
