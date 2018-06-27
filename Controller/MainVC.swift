@@ -61,7 +61,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         return 150
     }
     
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -101,7 +100,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         let item = controller.object(at: indexPath)
         cell.configureCell(item: item)
     }
-    
     func attemptFetch(){
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
@@ -130,5 +128,4 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         attemptFetch()
         tableView.reloadData()
     }
-    
 }

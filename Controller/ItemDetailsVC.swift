@@ -176,5 +176,4 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     @IBAction func imgBtnPressed(_ sender: UIButton) {
         present(imagePicker, animated: true, completion: nil)
     }
-    
 }
